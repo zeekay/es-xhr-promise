@@ -27,16 +27,14 @@
   "engines": {
     "node": "*"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/scottbrady/xhr-promise/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/scottbrady/xhr-promise/issues"
   },
   "homepage": "https://github.com/scottbrady/xhr-promise",
   "dependencies": {
+    "object-assign": "^4.0.1",
     "parse-headers": "~2.0.0"
   },
   "devDependencies": {
