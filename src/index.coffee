@@ -5,6 +5,7 @@
 ###
 
 ParseHeaders = require 'parse-headers'
+objectAssign = require 'object-assign'
 
 ###
 # Module to wrap an XMLHttpRequest in a promise.
@@ -34,7 +35,7 @@ module.exports = class XMLHttpRequestPromise
       username : null
       password : null
 
-    options = Object.assign({}, defaults, options)
+    options = objectAssign({}, defaults, options)
 
     new @constructor.Promise (resolve, reject) =>
       if !XMLHttpRequest
