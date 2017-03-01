@@ -21,7 +21,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/scottbrady/xhr-promise"
+    "url": "git://github.com/zeekay/xhr-promise-es6"
   },
   "main": "./lib",
   "engines": {
@@ -30,9 +30,9 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/scottbrady/xhr-promise/issues"
+    "url": "https://github.com/zeekay/xhr-promise-es6/issues"
   },
-  "homepage": "https://github.com/scottbrady/xhr-promise",
+  "homepage": "https://github.com/zeekay/xhr-promise-es6",
   "dependencies": {
     "object-assign": "^4.0.1",
     "parse-headers": "~2.0.0"
