@@ -4,13 +4,14 @@
 # https://github.com/scottbrady/xhr-promise/blob/master/LICENSE
 ###
 
-ParseHeaders = require 'parse-headers'
-objectAssign = require 'object-assign'
+import Promise      from 'broken'
+import objectAssign from 'es-object-assign'
+import parseHeaders from './parse-headers'
 
 ###
 # Module to wrap an XMLHttpRequest in a promise.
 ###
-module.exports = class XMLHttpRequestPromise
+export default class XMLHttpRequestPromise
 
   @DEFAULT_CONTENT_TYPE: 'application/x-www-form-urlencoded; charset=UTF-8'
 
@@ -26,7 +27,7 @@ module.exports = class XMLHttpRequestPromise
   #
   # Create the XHR object and wire up event handlers to use a promise.
   ###
-  send: (options={}) ->
+  send: (options = {}) ->
     defaults =
       method   : 'GET'
       data     : null
@@ -35,9 +36,9 @@ module.exports = class XMLHttpRequestPromise
       username : null
       password : null
 
-    options = objectAssign({}, defaults, options)
+    options = objectAssign {}, defaults, options
 
-    new @constructor.Promise (resolve, reject) =>
+    new Promise (resolve, reject) =>
       if !XMLHttpRequest
         @_handleError 'browser', reject, null, "browser doesn't support XMLHttpRequest"
         return
@@ -120,7 +121,7 @@ module.exports = class XMLHttpRequestPromise
   # XMLHttpRequestPromise._getHeaders() -> Object
   ###
   _getHeaders: () ->
-    ParseHeaders(@_xhr.getAllResponseHeaders())
+    parseHeaders @_xhr.getAllResponseHeaders()
 
   ###
   # XMLHttpRequestPromise._getResponseText() -> Mixed

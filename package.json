@@ -1,7 +1,7 @@
 {
-  "name": "xhr-promise-es6",
+  "name": "es-xhr-promise",
   "version": "1.2.6",
-  "description": "Wrap the XMLHttpRequest object with Promise/A+ compliant promises.",
+  "description": "Module-friendly fork of [xhr-promoise](https://github.com/scottbrady/xhr-promise). Wrap the XMLHttpRequest object with Promise/A+ compliant promises.",
   "author": {
     "name": "Scott Brady",
     "email": "scott@sbrady.com"
@@ -21,35 +21,35 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/zeekay/xhr-promise-es6"
+    "url": "git://github.com/zeekay/es-xhr-promise"
   },
-  "main": "./lib",
+  "main": "dist/xhr-promise.js",
+  "module": "dist/xhr-promise.mjs",
   "engines": {
     "node": "*"
   },
   "license": "MIT",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/zeekay/xhr-promise-es6/issues"
+    "url": "https://github.com/zeekay/es-xhr-promise/issues"
   },
-  "homepage": "https://github.com/zeekay/xhr-promise-es6",
+  "homepage": "https://github.com/zeekay/es-xhr-promise",
   "dependencies": {
-    "object-assign": "^4.0.1",
-    "parse-headers": "~2.0.0"
+    "broken": "0.1.9",
+    "es-object-assign": "4.1.1",
+    "object-assign": "^4.0.1"
   },
   "devDependencies": {
-    "coffee-script": "~1.9.3",
-    "coffeeify": "~1.1.0",
-    "grunt": "~0.4.5",
-    "grunt-browserify": "~3.8.0",
-    "grunt-cli": "~0.1.13",
-    "grunt-contrib-coffee": "~0.13.0",
-    "grunt-shell": "~1.1.1",
+    "cake-publish": "0.1.5",
+    "cake-test": "0.1.0",
+    "cake-version": "0.1.9",
+    "coffee-script": "1.12.4",
+    "handroll": "0.2.6",
     "mocha": "~2.2.5",
     "mocha-phantomjs": "~3.5.3",
     "object-assign": "^4.0.1",
+    "shortcake": "1.2.5",
     "should": "~6.0.3",
-    "zousan": "^2.2.0",
     "zuul": "~3.0.0"
   },
   "scripts": {
