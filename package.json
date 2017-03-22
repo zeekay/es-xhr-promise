@@ -41,9 +41,9 @@
     "es-object-assign": "4.1.3"
   },
   "devDependencies": {
-    "cake-bundle": "0.2.3",
-    "cake-outdated": "0.1.13",
-    "cake-publish": "0.1.5",
+    "cake-bundle": "0.2.6",
+    "cake-outdated": "0.1.15",
+    "cake-publish": "0.1.10",
     "cake-test": "0.1.0",
     "cake-version": "0.1.11",
     "coffee-script": "1.12.4",
