@@ -2,10 +2,7 @@
   "name": "es-xhr-promise",
   "version": "1.2.8",
   "description": "Module-friendly fork of [xhr-promoise](https://github.com/scottbrady/xhr-promise). Wrap the XMLHttpRequest object with Promise/A+ compliant promises.",
-  "author": {
-    "name": "Scott Brady",
-    "email": "scott@sbrady.com"
-  },
+  "author": "Zach Kelling <z@zeekay.io>",
   "keywords": [
     "xmlhttprequest",
     "xhr",
@@ -34,6 +31,10 @@
     "url": "https://github.com/zeekay/es-xhr-promise/issues"
   },
   "homepage": "https://github.com/zeekay/es-xhr-promise",
+  "files": [
+    "dist/",
+    "src/"
+  ],
   "dependencies": {
     "broken": "0.1.11",
     "es-object-assign": "4.1.3"

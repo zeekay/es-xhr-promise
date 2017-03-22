@@ -89,7 +89,7 @@ class XhrPromise
         @_handleError 'send', reject, null, e.toString()
 
   ###
-  # XhrPromisePromise.getXHR() -> XhrPromise
+  # XhrPromise.getXHR() -> XhrPromise
   ###
   getXHR: -> @_xhr
 
@@ -98,7 +98,7 @@ class XhrPromise
   ########################################################################
 
   ###
-  # XhrPromisePromise._attachWindowUnload()
+  # XhrPromise._attachWindowUnload()
   #
   # Fix for IE 9 and IE 10
   # Internet Explorer freezes when you close a webpage during an XHR request
@@ -110,19 +110,19 @@ class XhrPromise
     window.attachEvent 'onunload', @_unloadHandler if window.attachEvent
 
   ###
-  # XhrPromisePromise._detachWindowUnload()
+  # XhrPromise._detachWindowUnload()
   ###
   _detachWindowUnload: ->
     window.detachEvent 'onunload', @_unloadHandler if window.detachEvent
 
   ###
-  # XhrPromisePromise._getHeaders() -> Object
+  # XhrPromise._getHeaders() -> Object
   ###
   _getHeaders: ->
     parseHeaders @_xhr.getAllResponseHeaders()
 
   ###
-  # XhrPromisePromise._getResponseText() -> Mixed
+  # XhrPromise._getResponseText() -> Mixed
   #
   # Parses response text JSON if present.
   ###
@@ -138,7 +138,7 @@ class XhrPromise
     responseText
 
   ###
-  # XhrPromisePromise._getResponseUrl() -> String
+  # XhrPromise._getResponseUrl() -> String
   #
   # Actual response URL after following redirects.
   ###
@@ -151,7 +151,7 @@ class XhrPromise
     ''
 
   ###
-  # XhrPromisePromise._handleError(reason, reject, status, statusText)
+  # XhrPromise._handleError(reason, reject, status, statusText)
   # - reason (String)
   # - reject (Function)
   # - status (String)
@@ -160,15 +160,14 @@ class XhrPromise
   _handleError: (reason, reject, status, statusText) ->
     @_detachWindowUnload()
 
-    reject(
-      reason     : reason
-      status     : status || @_xhr.status
-      statusText : statusText || @_xhr.statusText
-      xhr        : @_xhr
-    )
+    reject
+      reason:     reason
+      status:     status     or @_xhr.status
+      statusText: statusText or @_xhr.statusText
+      xhr:        @_xhr
 
   ###
-  # XhrPromisePromise._handleWindowUnload()
+  # XhrPromise._handleWindowUnload()
   ###
   _handleWindowUnload: ->
     @_xhr.abort()
