@@ -22,6 +22,7 @@
   },
   "main": "dist/xhr-promise.js",
   "module": "dist/xhr-promise.mjs",
+  "js:next": "dist/xhr-promise.mjs",
   "engines": {
     "node": "*"
   },
