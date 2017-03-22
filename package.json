@@ -36,18 +36,17 @@
   "homepage": "https://github.com/zeekay/es-xhr-promise",
   "dependencies": {
     "broken": "0.1.9",
-    "es-object-assign": "4.1.1",
-    "object-assign": "^4.0.1"
+    "es-object-assign": "4.1.1"
   },
   "devDependencies": {
+    "cake-bundle": "0.2.2",
+    "cake-outdated": "0.1.13",
     "cake-publish": "0.1.5",
     "cake-test": "0.1.0",
     "cake-version": "0.1.9",
     "coffee-script": "1.12.4",
-    "handroll": "0.2.6",
     "mocha": "~2.2.5",
     "mocha-phantomjs": "~3.5.3",
-    "object-assign": "^4.0.1",
     "shortcake": "1.2.5",
     "should": "~6.0.3",
     "zuul": "~3.0.0"

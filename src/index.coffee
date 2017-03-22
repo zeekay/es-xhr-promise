@@ -8,10 +8,18 @@ import Promise      from 'broken'
 import objectAssign from 'es-object-assign'
 import parseHeaders from './parse-headers'
 
+defaults =
+  method:   'GET'
+  headers:  {}
+  data:     null
+  username: null
+  password: null
+  async:    true
+
 ###
-# Module to wrap an XMLHttpRequest in a promise.
+# Module to wrap an XhrPromise in a promise.
 ###
-export default class XMLHttpRequestPromise
+class XhrPromise
 
   @DEFAULT_CONTENT_TYPE: 'application/x-www-form-urlencoded; charset=UTF-8'
 
@@ -22,33 +30,25 @@ export default class XMLHttpRequestPromise
   ########################################################################
 
   ###
-  # XMLHttpRequestPromise.send(options) -> Promise
+  # XhrPromise.send(options) -> Promise
   # - options (Object): URL, method, data, etc.
   #
   # Create the XHR object and wire up event handlers to use a promise.
   ###
   send: (options = {}) ->
-    defaults =
-      method   : 'GET'
-      data     : null
-      headers  : {}
-      async    : true
-      username : null
-      password : null
-
     options = objectAssign {}, defaults, options
 
     new Promise (resolve, reject) =>
-      if !XMLHttpRequest
-        @_handleError 'browser', reject, null, "browser doesn't support XMLHttpRequest"
+      unless XhrPromise
+        @_handleError 'browser', reject, null, "browser doesn't support XhrPromise"
         return
 
       if typeof options.url isnt 'string' || options.url.length is 0
         @_handleError 'url', reject, null, 'URL is a required parameter'
         return
 
-      # XMLHttpRequest is supported by IE 7+
-      @_xhr = xhr = new XMLHttpRequest
+      # XhrPromise is supported by IE 7+
+      @_xhr = xhr = new XhrPromise
 
       # success handler
       xhr.onload = =>
@@ -60,19 +60,18 @@ export default class XMLHttpRequestPromise
           @_handleError 'parse', reject, null, 'invalid JSON response'
           return
 
-        resolve(
-          url          : @_getResponseUrl()
-          status       : xhr.status
-          statusText   : xhr.statusText
-          responseText : responseText
-          headers      : @_getHeaders()
-          xhr          : xhr
-        )
+        resolve
+          url:          @_getResponseUrl()
+          headers:      @_getHeaders()
+          responseText: responseText
+          status:       xhr.status
+          statusText:   xhr.statusText
+          xhr:          xhr
 
       # error handlers
-      xhr.onerror   = => @_handleError 'error', reject
+      xhr.onerror   = => @_handleError 'error',   reject
       xhr.ontimeout = => @_handleError 'timeout', reject
-      xhr.onabort   = => @_handleError 'abort', reject
+      xhr.onabort   = => @_handleError 'abort',   reject
 
       @_attachWindowUnload()
 
@@ -90,45 +89,44 @@ export default class XMLHttpRequestPromise
         @_handleError 'send', reject, null, e.toString()
 
   ###
-  # XMLHttpRequestPromise.getXHR() -> XMLHttpRequest
+  # XhrPromisePromise.getXHR() -> XhrPromise
   ###
-  getXHR: () ->
-    @_xhr
+  getXHR: -> @_xhr
 
   ##########################################################################
   ## Psuedo-private methods ###############################################
   ########################################################################
 
   ###
-  # XMLHttpRequestPromise._attachWindowUnload()
+  # XhrPromisePromise._attachWindowUnload()
   #
   # Fix for IE 9 and IE 10
   # Internet Explorer freezes when you close a webpage during an XHR request
   # https://support.microsoft.com/kb/2856746
   #
   ###
-  _attachWindowUnload: () ->
+  _attachWindowUnload: ->
     @_unloadHandler = @_handleWindowUnload.bind(@)
     window.attachEvent 'onunload', @_unloadHandler if window.attachEvent
 
   ###
-  # XMLHttpRequestPromise._detachWindowUnload()
+  # XhrPromisePromise._detachWindowUnload()
   ###
-  _detachWindowUnload: () ->
+  _detachWindowUnload: ->
     window.detachEvent 'onunload', @_unloadHandler if window.detachEvent
 
   ###
-  # XMLHttpRequestPromise._getHeaders() -> Object
+  # XhrPromisePromise._getHeaders() -> Object
   ###
-  _getHeaders: () ->
+  _getHeaders: ->
     parseHeaders @_xhr.getAllResponseHeaders()
 
   ###
-  # XMLHttpRequestPromise._getResponseText() -> Mixed
+  # XhrPromisePromise._getResponseText() -> Mixed
   #
   # Parses response text JSON if present.
   ###
-  _getResponseText: () ->
+  _getResponseText: ->
     # Accessing binary-data responseText throws an exception in IE9
     responseText = if typeof @_xhr.responseText is 'string' then @_xhr.responseText else ''
 
@@ -140,11 +138,11 @@ export default class XMLHttpRequestPromise
     responseText
 
   ###
-  # XMLHttpRequestPromise._getResponseUrl() -> String
+  # XhrPromisePromise._getResponseUrl() -> String
   #
   # Actual response URL after following redirects.
   ###
-  _getResponseUrl: () ->
+  _getResponseUrl: ->
     return @_xhr.responseURL if @_xhr.responseURL?
 
     # Avoid security warnings on getResponseHeader when not allowed by CORS
@@ -153,7 +151,7 @@ export default class XMLHttpRequestPromise
     ''
 
   ###
-  # XMLHttpRequestPromise._handleError(reason, reject, status, statusText)
+  # XhrPromisePromise._handleError(reason, reject, status, statusText)
   # - reason (String)
   # - reject (Function)
   # - status (String)
@@ -170,7 +168,9 @@ export default class XMLHttpRequestPromise
     )
 
   ###
-  # XMLHttpRequestPromise._handleWindowUnload()
+  # XhrPromisePromise._handleWindowUnload()
   ###
-  _handleWindowUnload: () ->
+  _handleWindowUnload: ->
     @_xhr.abort()
+
+export default XhrPromise
