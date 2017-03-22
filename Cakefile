@@ -1,25 +1,16 @@
 require 'shortcake'
 
-use 'cake-test'
+use 'cake-bundle'
+use 'cake-outdated'
 use 'cake-publish'
+use 'cake-test'
 use 'cake-version'
 
 task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', ->
-  handroll = require 'handroll'
-
-  bundle = yield handroll.bundle
-    entry:    'src/index.coffee'
+  bundle.write
+    formats:  ['cjs', 'es']
     commonjs: true
-
-  # CommonJS
-  bundle.write
-    format:     'cjs'
-    sourceMap: false
-
-  # CommonJS
-  bundle.write
-    format:     'es'
-    sourceMap: false
+    entry:    'src/index.coffee'
