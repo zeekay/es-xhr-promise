@@ -39,7 +39,7 @@ class XhrPromise
     options = objectAssign {}, defaults, options
 
     new Promise (resolve, reject) =>
-      unless XhrPromise
+      unless XMLHttpRequest
         @_handleError 'browser', reject, null, "browser doesn't support XhrPromise"
         return
 
@@ -47,8 +47,8 @@ class XhrPromise
         @_handleError 'url', reject, null, 'URL is a required parameter'
         return
 
-      # XhrPromise is supported by IE 7+
-      @_xhr = xhr = new XhrPromise
+      # XMLHttpRequest is supported by IE 7+
+      @_xhr = xhr = new XMLHttpRequest()
 
       # success handler
       xhr.onload = =>
@@ -75,7 +75,7 @@ class XhrPromise
 
       @_attachWindowUnload()
 
-      xhr.open(options.method, options.url, options.async, options.username, options.password)
+      xhr.open options.method, options.url, options.async, options.username, options.password
 
       if options.data? && !options.headers['Content-Type']
         options.headers['Content-Type'] = @constructor.DEFAULT_CONTENT_TYPE
