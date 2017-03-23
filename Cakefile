@@ -11,6 +11,8 @@ task 'clean', 'clean project', ->
 
 task 'build', 'build project', ->
   bundle.write
-    formats:  ['cjs', 'es']
-    commonjs: true
     entry:    'src/index.coffee'
+    formats:  ['cjs', 'es']
+    compilers:
+      coffee:
+        version: 1
