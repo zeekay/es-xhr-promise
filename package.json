@@ -20,9 +20,9 @@
     "type": "git",
     "url": "git://github.com/zeekay/es-xhr-promise"
   },
-  "main": "dist/xhr-promise.js",
-  "module": "dist/xhr-promise.mjs",
-  "js:next": "dist/xhr-promise.mjs",
+  "main": "dist/lib.js",
+  "module": "dist/lib.mjs",
+  "js:next": "dist/lib.mjs",
   "engines": {
     "node": "*"
   },
