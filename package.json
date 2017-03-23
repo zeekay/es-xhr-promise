@@ -54,6 +54,7 @@
     "zuul": "~3.11.1"
   },
   "scripts": {
+    "prepublishOnly": "cake build",
     "test": "grunt test",
     "zuul": "zuul -- ./test/cases/*_test.js"
   }
