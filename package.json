@@ -1,6 +1,6 @@
 {
   "name": "es-xhr-promise",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "description": "Module-friendly fork of [xhr-promoise](https://github.com/scottbrady/xhr-promise). Wrap the XMLHttpRequest object with Promise/A+ compliant promises.",
   "author": "Zach Kelling <z@zeekay.io>",
   "keywords": [
