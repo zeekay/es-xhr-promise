@@ -40,7 +40,7 @@ class XhrPromise
 
     new Promise (resolve, reject) =>
       unless XMLHttpRequest
-        @_handleError 'browser', reject, null, "browser doesn't support XhrPromise"
+        @_handleError 'browser', reject, null, "browser doesn't support XMLHttpRequest"
         return
 
       if typeof options.url isnt 'string' || options.url.length is 0
