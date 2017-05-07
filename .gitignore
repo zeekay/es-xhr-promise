@@ -1,3 +1,4 @@
 /node_modules
 /test/bundle.js
 lib/
+.sake
