@@ -77,7 +77,7 @@ class XhrPromise
 
       xhr.open options.method, options.url, options.async, options.username, options.password
 
-      if options.data? && !options.headers['Content-Type']
+      if options.data? && !(options.data instanceof FormData) && !options.headers['Content-Type']
         options.headers['Content-Type'] = @constructor.DEFAULT_CONTENT_TYPE
 
       for header, value of options.headers
